@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #fdf2e2;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+.main-heading {
+  color: #c2a47b;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.carousel .slide img {
+  object-fit: cover;
+}
+
+/* Button Styles */
+.button {
+  background-color: #c2a47b;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #b08f65;
+}
+
+.button-secondary {
+  background-color: #f0e3cf;
+  color: #c2a47b;
+  border: 2px solid #c2a47b;
+}
+
+.button-secondary:hover {
+  background-color: #c2a47b;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .main-heading {
+    font-size: 2em;
+  }
+
+  .registration-input {
+    width: 100%;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
