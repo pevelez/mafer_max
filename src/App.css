@@ -1,7 +1,36 @@
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #fdf2e2;
+  font-family: 'CustomFont';
+}
+
+body { 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content { 
+  flex: 1;
+  overflow: auto;
+}
+
+@font-face {
+  font-family: 'CustomFont';
+  src: url('./fonts/AirbnbCereal_W_Lt.otf');
+  font-size:medium;
+}
+
+@font-face {
+  font-family: 'BoldFont';
+  src: url('./fonts/AirbnbCereal_W_Md.otf');
+  font-size:medium;
+}
+
+@font-face {
+  font-family: 'ExtraBoldFont';
+  src: url('./fonts/AirbnbCereal_W_XBd.otf');
+  font-size: medium;
 }
 
 .container {
@@ -47,16 +76,16 @@ body {
   color: white;
 }
 
+.button {
+  width: 90%;
+}
+
 @media screen and (max-width: 768px) {
   .main-heading {
     font-size: 2em;
   }
 
   .registration-input {
-    width: 100%;
-  }
-
-  .button {
     width: 100%;
   }
 }

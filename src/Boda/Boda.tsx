@@ -1,36 +1,166 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import VideoCapture from './VideoCapture';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+
+import '../App.css';
 
 export default function Boda() {
     const [fullName, setFullName] = useState<string | null>(null);
     const navigate = useNavigate();
+    const imageFileInputRef = useRef<HTMLInputElement>(null);
+    const videoFileInputRef = useRef<HTMLInputElement>(null);
+
+    // State for selected file and preview
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [previewURL, setPreviewURL] = useState<string>('');
 
     useEffect(() => {
         const storedFullName = localStorage.getItem('fullName');
-        if (storedFullName) { 
+        if (storedFullName) {
             setFullName(storedFullName);
-        } else { 
+        } else {
             navigate('/');
         }
     }, [navigate]);
 
-    const handleImageUpload = () => { 
-        console.log('Uploading image');
+    const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            setSelectedFile(file);
+            setPreviewURL(URL.createObjectURL(file));
+        }
+    };
+
+    const handleUpload = async () => {
+        if (!selectedFile || !fullName) {
+            alert('No hay archivo seleccionado o falta el nombre completo.');
+            return;
+        }
+        try {
+            // Step 1: Request a pre-signed URL from the backend
+            const getUrlResponse = await fetch('https://bnbhu7h8gb.execute-api.us-west-1.amazonaws.com/prod/signedUrls/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fullName: fullName,
+                    fileName: selectedFile.name,
+                    fileType: selectedFile.type
+                })
+            });
+
+            if (!getUrlResponse.ok) {
+                const errorText = await getUrlResponse.text();
+                console.error('Error getting presigned URL:', errorText);
+                alert('Error al obtener la URL pre-firmada.');
+                return;
+            }
+
+            const { presignedUrl, s3Key } = await getUrlResponse.json();
+
+            // Step 2: Upload the file directly to S3 using the pre-signed URL
+            const uploadResponse = await fetch(presignedUrl, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': selectedFile.type
+                },
+                body: selectedFile
+            });
+
+            if (!uploadResponse.ok) { 
+                console.error('Upload to S3 failed:', uploadResponse.statusText);
+                alert('Error al subir el archivo a S3.');
+                return;
+            }
+
+            console.log('File uploaded successfully to S3');
+            alert('Archivo subido exitosamente.');
+            setSelectedFile(null);
+            setPreviewURL('');
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            alert('Error al subir el archivo.');
+        }
+    };
+
+    const handleCancel = () => {
+        setSelectedFile(null);
+        setPreviewURL('');
+    };
+
+    const handleImageCaptureClick = () => {
+        if (imageFileInputRef.current) {
+            imageFileInputRef.current.click();
+        }
+    };
+
+    const handleVideoCaptureClick = () => { 
+        if (videoFileInputRef.current) { 
+            videoFileInputRef.current.click()
+        }
     }
-    const handleVideoUpload = () => { 
-        console.log('Uploading video');
-    }
-    return(
-        <div>
-             {fullName ? (
-                <h1>Hola {fullName}!</h1>
-            ) : (
-                <h1>No te has registrado! Redirigiendote</h1>
-            )}
-            <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} />
-            <input type="file" accept="video/*" capture="environment" onChange={handleVideoUpload} />
-            <VideoCapture/>
-        </div>
+
+    return (
+        <>
+            <Header fullName={fullName ?? ''} subtext='Capturar video o foto'/>
+            <div className='content'>
+                <div className='buttons'>
+                    <button onClick={handleImageCaptureClick} className='button'>
+                        Capturar Imagen
+                    </button>
+                    <button onClick={handleVideoCaptureClick} className='button'>
+                        Capturar Video
+                    </button>
+                </div>
+
+                <input
+                    type="file"
+                    accept="image/*"
+                    capture="environment"
+                    onChange={handleFileSelection}
+                    ref={imageFileInputRef}
+                    style={{ display: 'none' }}
+                />
+
+                <input
+                    type="file"
+                    accept="video/*"
+                    capture="environment"
+                    onChange={handleFileSelection}
+                    ref={videoFileInputRef}
+                    style={{ display: 'none' }}
+                />
+
+                {selectedFile && (
+                    <div>
+                        <h2>Vista Previa:</h2>
+                        <div>
+                            <button  onClick={handleUpload}>
+                                Subir
+                            </button>
+                            <button  onClick={handleCancel}>
+                                Cancelar
+                            </button>
+                        </div>
+                        {selectedFile.type.startsWith('image/') ? (
+                            <img
+                                src={previewURL}
+                                alt="Preview"
+                                style={{ maxWidth: '100%', height: 'auto' }}
+                            />
+                        ) : (
+                            <video
+                                src={previewURL}
+                                controls
+                                style={{ maxWidth: '100%', height: 'auto' }}
+                            />
+                        )}
+                    </div>
+                )}
+            </div>
+            <Footer currentPage={'subir'} />
+        </>
     );
 }

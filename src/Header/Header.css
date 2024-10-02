@@ -1,0 +1,30 @@
+.header {
+    padding: 10px;
+    font-family: 'BoldFont';
+}
+
+.header .header-top { 
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    border-bottom: 0.1rem solid gray;
+}
+
+.header-subtext { 
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: #c2a47b;
+    font-family: 'ExtraBoldFont';
+}
+
+.header-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.header-text {
+    font-size: 20px;
+    color: #333; /* Darker text color */
+}
+  

@@ -24,11 +24,11 @@ function Register() {
         setSavedFullName(fullName);
         setName('');
         setLastName('');
-        navigate('/boda');
+        navigate('/subir');
     };
 
     const handleContinue = () => { 
-        navigate('/boda');
+        navigate('/subir');
     }
 
     const handleNewRegistration = () => { 
