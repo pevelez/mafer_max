@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6f026fbd.css",
-    "main.js": "/static/js/main.490fe89e.js",
+    "main.css": "/static/css/main.d12b4993.css",
+    "main.js": "/static/js/main.2f7292f0.js",
     "static/js/453.b4a2d583.chunk.js": "/static/js/453.b4a2d583.chunk.js",
     "static/media/image_1.jpg": "/static/media/image_1.c202a853611ebc53cdb2.jpg",
     "static/media/image_8.jpg": "/static/media/image_8.f10252e9fcaa4c30a2e4.jpg",
@@ -12,13 +12,21 @@
     "static/media/image_9.jpg": "/static/media/image_9.88bf29ed4db3b22d61c5.jpg",
     "static/media/image_3.jpg": "/static/media/image_3.b399a370c11522edaac3.jpg",
     "static/media/image_2.jpg": "/static/media/image_2.9f301fd6f5f76cd3a9b5.jpg",
+    "static/media/AirbnbCereal_W_XBd.otf": "/static/media/AirbnbCereal_W_XBd.02ab4b6ebcf15122c467.otf",
+    "static/media/AirbnbCereal_W_Md.otf": "/static/media/AirbnbCereal_W_Md.81798c6cdace650a8c1a.otf",
+    "static/media/AirbnbCereal_W_Lt.otf": "/static/media/AirbnbCereal_W_Lt.6cb70d2c3d67dfe9b7fc.otf",
+    "static/media/wedding_icon.svg": "/static/media/wedding_icon.efa1743734fe950980d0b41e4c40ba9c.svg",
+    "static/media/view_red.svg": "/static/media/view_red.20161718b5a8be8532d3476054b2c69e.svg",
+    "static/media/view_black.svg": "/static/media/view_black.5e10ef0a47724ae20a12ef7945ea235a.svg",
+    "static/media/upload_red.svg": "/static/media/upload_red.d3bfb022bfa0ef7c9961f4e693909f2a.svg",
+    "static/media/upload_black.svg": "/static/media/upload_black.19458a0d85aed638d77f0c60a00b9571.svg",
     "index.html": "/index.html",
-    "main.6f026fbd.css.map": "/static/css/main.6f026fbd.css.map",
-    "main.490fe89e.js.map": "/static/js/main.490fe89e.js.map",
+    "main.d12b4993.css.map": "/static/css/main.d12b4993.css.map",
+    "main.2f7292f0.js.map": "/static/js/main.2f7292f0.js.map",
     "453.b4a2d583.chunk.js.map": "/static/js/453.b4a2d583.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f026fbd.css",
-    "static/js/main.490fe89e.js"
+    "static/css/main.d12b4993.css",
+    "static/js/main.2f7292f0.js"
   ]
 }
