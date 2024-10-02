@@ -114,12 +114,12 @@ export default function Boda() {
             <div className='content'>
                 {!selectedFile ? (
                     <div className='capture-buttons'>
-                        <div className='capture-button'>
-                            <button onClick={handleImageCaptureClick} className='capture-button'> Capturar Imagen </button>
+                        <div className='capture-button' onClick={handleImageCaptureClick} >
+                            <button className='capture-button'> Capturar Imagen </button>
                             <img src={image_white} alt='' className='capture-icon'/>
                         </div>
-                        <div className='capture-button'>
-                            <button onClick={handleVideoCaptureClick} className='capture-button'> Capturar Video </button>
+                        <div className='capture-button' onClick={handleVideoCaptureClick}>
+                            <button className='capture-button'> Capturar Video </button>
                             <img src={video_white} alt='' className='capture-icon'/>
                         </div>
                         <input
