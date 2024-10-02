@@ -4,6 +4,12 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 
 import '../App.css';
+import './Boda.css';
+
+import video_white from './icons/video_white.svg';
+import image_white from './icons/image_white.svg';
+//import upload_white from './icons/upload_white.svg';
+//import cancel_white from './icons/cancel_white.svg';
 
 export default function Boda() {
     const [fullName, setFullName] = useState<string | null>(null);
@@ -104,59 +110,64 @@ export default function Boda() {
 
     return (
         <>
-            <Header fullName={fullName ?? ''} subtext='Capturar video o foto'/>
+            <Header fullName={fullName ?? ''} subtext='Capturar momento'/>
             <div className='content'>
-                <div className='buttons'>
-                    <button onClick={handleImageCaptureClick} className='button'>
-                        Capturar Imagen
-                    </button>
-                    <button onClick={handleVideoCaptureClick} className='button'>
-                        Capturar Video
-                    </button>
-                </div>
-
-                <input
-                    type="file"
-                    accept="image/*"
-                    capture="environment"
-                    onChange={handleFileSelection}
-                    ref={imageFileInputRef}
-                    style={{ display: 'none' }}
-                />
-
-                <input
-                    type="file"
-                    accept="video/*"
-                    capture="environment"
-                    onChange={handleFileSelection}
-                    ref={videoFileInputRef}
-                    style={{ display: 'none' }}
-                />
-
-                {selectedFile && (
-                    <div>
-                        <h2>Vista Previa:</h2>
-                        <div>
-                            <button  onClick={handleUpload}>
-                                Subir
-                            </button>
-                            <button  onClick={handleCancel}>
-                                Cancelar
-                            </button>
+                {!selectedFile ? (
+                    <div className='capture-buttons'>
+                        <div className='capture-button'>
+                            <button onClick={handleImageCaptureClick} className='capture-button'> Capturar Imagen </button>
+                            <img src={image_white} alt='' className='capture-icon'/>
                         </div>
-                        {selectedFile.type.startsWith('image/') ? (
-                            <img
-                                src={previewURL}
-                                alt="Preview"
-                                style={{ maxWidth: '100%', height: 'auto' }}
-                            />
-                        ) : (
-                            <video
-                                src={previewURL}
-                                controls
-                                style={{ maxWidth: '100%', height: 'auto' }}
-                            />
-                        )}
+                        <div className='capture-button'>
+                            <button onClick={handleVideoCaptureClick} className='capture-button'> Capturar Video </button>
+                            <img src={video_white} alt='' className='capture-icon'/>
+                        </div>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            capture="environment"
+                            onChange={handleFileSelection}
+                            ref={imageFileInputRef}
+                            style={{ display: 'none' }}
+                        />
+
+                        <input
+                            type="file"
+                            accept="video/*"
+                            capture="environment"
+                            onChange={handleFileSelection}
+                            ref={videoFileInputRef}
+                            style={{ display: 'none' }}
+                        />
+                    </div>
+                ) : (
+                    <div className='preview'>
+                        <div className='preview-actions'>
+                            <h2>Vista Previa</h2>
+                            <div className='preview-buttons'>
+                                <div className='upload-button'>
+                                    <button onClick={handleUpload}> Subir </button>
+                                </div>
+                                <div className='cancel-button'>
+                                    <button onClick={handleCancel}> Cancelar </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='file-container'>
+                            {selectedFile.type.startsWith('image/') ? (
+                                <img
+                                    src={previewURL}
+                                    alt="Preview"
+                                    style={{ maxWidth: '100%', height: "auto" }}
+                                />
+                            ) : (
+                                <video
+                                    src={previewURL}
+                                    controls
+                                    style={{ maxWidth: '100%', height: 'auto' }}
+                                />
+                            )}
+                        </div>
                     </div>
                 )}
             </div>

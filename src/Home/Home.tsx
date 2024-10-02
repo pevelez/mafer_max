@@ -10,8 +10,13 @@ function Home() {
       <div className="">
         <h2> Cómo funciona?</h2>
         <p>
-          Queremos que compartas tu experiencia de la boda de la manera más natural y divertida! En esta aplicación, sube fotos y videos. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        "Estamos emocionados de compartir con ustedes un día tan especial en nuestras vidas: ¡nuestra boda! 
+        Para que puedan ser parte de cada momento y recordar juntos esta fecha, hemos creado una manera divertida y sencilla de compartir sus fotos y videos.
+        En esta página podrás subir tus mejores momentos durante la celebración. Tu aportación permitirá que todos disfrutemos este inolvidable día a través de diferentes perspectivas.
+        ¡No podemos esperar a ver todas las sonrisas, bailes y momentos ! 
+        Gracias por ser parte de nuestra historia. 
         </p>
+        <p>Con amor: Mafer, Max</p>
       </div>
       <Register/>
     </div>
