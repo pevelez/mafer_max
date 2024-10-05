@@ -64,7 +64,7 @@ export default function Boda() {
                 return;
             }
 
-            const { presignedUrl, s3Key } = await getUrlResponse.json();
+            const { presignedUrl } = await getUrlResponse.json();
 
             // Step 2: Upload the file directly to S3 using the pre-signed URL
             const uploadResponse = await fetch(presignedUrl, {
