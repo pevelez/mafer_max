@@ -7,7 +7,9 @@ import '../App.css';
 import './Boda.css';
 
 import video_white from './icons/video_white.svg';
-import image_white from './icons/image_white.svg';
+import file_white from './icons/file_white.svg';
+import photo_white from './icons/photo_white.svg';
+
 import FileUploadService from './FileUploadService';
 import { AxiosProgressEvent } from 'axios';
 import UploadModal from './UploadModal';
@@ -96,6 +98,13 @@ export default function Boda() {
         }
     }
 
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const handleGalleryUploadClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+
     return (
         <>
             <Header fullName={fullName ?? ''} subtext='Capturar momento'/>
@@ -104,12 +113,18 @@ export default function Boda() {
                     <div className='capture-buttons'>
                         <div className='capture-button' onClick={handleImageCaptureClick} >
                             <button className='capture-button'> Capturar Imagen </button>
-                            <img src={image_white} alt='' className='capture-icon'/>
+                            <img src={photo_white} alt='' className='capture-icon'/>
                         </div>
                         <div className='capture-button' onClick={handleVideoCaptureClick}>
                             <button className='capture-button'> Capturar Video </button>
                             <img src={video_white} alt='' className='capture-icon'/>
                         </div>
+
+                        <div className='capture-button' onClick={handleGalleryUploadClick} >
+                            <button className='capture-button'> Subir de Galería </button>
+                            <img src={file_white} alt='' className='capture-icon'/>
+                        </div>
+
                         <input
                             type="file"
                             accept="image/*"
@@ -125,6 +140,15 @@ export default function Boda() {
                             capture="environment"
                             onChange={handleFileSelection}
                             ref={videoFileInputRef}
+                            style={{ display: 'none' }}
+                        />
+
+                        <input
+                            type="file"
+                            accept="image/*, video/*"
+                            capture="environment"
+                            onChange={handleFileSelection}
+                            ref={fileInputRef}
                             style={{ display: 'none' }}
                         />
                     </div>
