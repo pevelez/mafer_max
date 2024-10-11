@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.33a3ed7b.css",
-    "main.js": "/static/js/main.f90686e8.js",
+    "main.js": "/static/js/main.cf49690d.js",
     "static/js/453.b4a2d583.chunk.js": "/static/js/453.b4a2d583.chunk.js",
     "static/media/image_1.jpg": "/static/media/image_1.c202a853611ebc53cdb2.jpg",
     "static/media/image_8.jpg": "/static/media/image_8.f10252e9fcaa4c30a2e4.jpg",
@@ -18,17 +18,18 @@
     "static/media/wedding_icon.svg": "/static/media/wedding_icon.efa1743734fe950980d0b41e4c40ba9c.svg",
     "static/media/view_red.svg": "/static/media/view_red.20161718b5a8be8532d3476054b2c69e.svg",
     "static/media/view_black.svg": "/static/media/view_black.5e10ef0a47724ae20a12ef7945ea235a.svg",
-    "static/media/image_white.svg": "/static/media/image_white.c9dcd760bfd5b6ad2e8c00df4ad1dc5f.svg",
+    "static/media/file_white.svg": "/static/media/file_white.c9dcd760bfd5b6ad2e8c00df4ad1dc5f.svg",
     "static/media/upload_red.svg": "/static/media/upload_red.d3bfb022bfa0ef7c9961f4e693909f2a.svg",
     "static/media/upload_black.svg": "/static/media/upload_black.19458a0d85aed638d77f0c60a00b9571.svg",
+    "static/media/photo_white.svg": "/static/media/photo_white.04abbb4c7c372a47ebccb28f1ec5146e.svg",
     "static/media/video_white.svg": "/static/media/video_white.c2e5fd2921ed23de44080bc7775542e3.svg",
     "index.html": "/index.html",
     "main.33a3ed7b.css.map": "/static/css/main.33a3ed7b.css.map",
-    "main.f90686e8.js.map": "/static/js/main.f90686e8.js.map",
+    "main.cf49690d.js.map": "/static/js/main.cf49690d.js.map",
     "453.b4a2d583.chunk.js.map": "/static/js/453.b4a2d583.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.33a3ed7b.css",
-    "static/js/main.f90686e8.js"
+    "static/js/main.cf49690d.js"
   ]
 }
