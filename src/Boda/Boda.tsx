@@ -146,7 +146,6 @@ export default function Boda() {
                         <input
                             type="file"
                             accept="image/*, video/*"
-                            capture="environment"
                             onChange={handleFileSelection}
                             ref={fileInputRef}
                             style={{ display: 'none' }}
