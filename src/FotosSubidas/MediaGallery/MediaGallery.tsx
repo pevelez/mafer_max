@@ -29,7 +29,7 @@ function MediaGallery() {
 
   useEffect(() => {
     fetchMedia();
-  }, []);
+  });
 
   return (
     <div className='content' id="scrollableDiv">
