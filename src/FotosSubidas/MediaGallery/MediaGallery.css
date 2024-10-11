@@ -1,0 +1,21 @@
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 columns of equal width */
+    gap: 5px; /* Adjusts the spacing between items */
+  }
+  
+  .media-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    /* padding-top: 100%; Maintains a square aspect ratio */
+  }
+  
+  .media-item img,
+  .media-item video {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the media covers the container while maintaining aspect ratio */
+  }

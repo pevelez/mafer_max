@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home/Home';
 import Boda from './Boda/Boda';
 import FotosSubidas from './FotosSubidas/FotosSubidas';
-import MediaGallery from './MediaGallery/MediaGallery';
+import MediaGallery from './FotosSubidas/MediaGallery/MediaGallery';
 
 function App() {
   return (

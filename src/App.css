@@ -77,3 +77,15 @@ html, body {
     width: 100%;
   }
 }
+
+/* Content area styling */
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  margin-top: 80px; /* Same as header's height */
+  bottom: 60px; /* Same as footer's height */
+  /* Other content styles */
+}
