@@ -8,10 +8,15 @@ import './Boda.css';
 
 import video_white from './icons/video_white.svg';
 import image_white from './icons/image_white.svg';
-//import upload_white from './icons/upload_white.svg';
-//import cancel_white from './icons/cancel_white.svg';
+import FileUploadService from './FileUploadService';
+import { AxiosProgressEvent } from 'axios';
+import UploadModal from './UploadModal';
 
 export default function Boda() {
+
+    const [uploadProgress, setUploadProgress] = useState(0);
+    const [isUploading, setIsUploading] = useState(false);
+
     const [fullName, setFullName] = useState<string | null>(null);
     const navigate = useNavigate();
     const imageFileInputRef = useRef<HTMLInputElement>(null);
@@ -39,55 +44,38 @@ export default function Boda() {
     };
 
     const handleUpload = async () => {
+        setIsUploading(true);
+
+        const logProgress = (progressEvent: AxiosProgressEvent) => { 
+            const total = progressEvent.total || progressEvent.loaded; // Fallback to loaded if total is undefined
+            const percentCompleted = Math.round((progressEvent.loaded * 100) / total);
+        
+            console.log('Upload Progress' + percentCompleted.toString());
+            setUploadProgress(percentCompleted);
+        }
+
         if (!selectedFile || !fullName) {
             alert('No hay archivo seleccionado o falta el nombre completo.');
             return;
         }
         try {
-            // Step 1: Request a pre-signed URL from the backend
-            const getUrlResponse = await fetch('https://bnbhu7h8gb.execute-api.us-west-1.amazonaws.com/prod/signedUrls/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    fullName: fullName,
-                    fileName: selectedFile.name,
-                    fileType: selectedFile.type
-                })
-            });
 
-            if (!getUrlResponse.ok) {
-                const errorText = await getUrlResponse.text();
-                console.error('Error getting presigned URL:', errorText);
-                alert('Error al obtener la URL pre-firmada.');
-                return;
-            }
-
-            const { presignedUrl } = await getUrlResponse.json();
-
-            // Step 2: Upload the file directly to S3 using the pre-signed URL
-            const uploadResponse = await fetch(presignedUrl, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': selectedFile.type
-                },
-                body: selectedFile
-            });
-
-            if (!uploadResponse.ok) { 
-                console.error('Upload to S3 failed:', uploadResponse.statusText);
-                alert('Error al subir el archivo a S3.');
-                return;
-            }
+            const presignedUrl = await FileUploadService.getPresignedUrl(
+                fullName,
+                selectedFile.name,
+                selectedFile.type
+            );
+            await FileUploadService.uploadFileToS3(presignedUrl, selectedFile, logProgress);
 
             console.log('File uploaded successfully to S3');
-            alert('Archivo subido exitosamente.');
-            setSelectedFile(null);
-            setPreviewURL('');
+            //alert('Archivo subido exitosamente.');
+            handleCancel();
         } catch (error) {
             console.error('Error uploading file:', error);
             alert('Error al subir el archivo.');
+        } finally {
+            setIsUploading(false);
+            setUploadProgress(0);
         }
     };
 
@@ -171,6 +159,7 @@ export default function Boda() {
                     </div>
                 )}
             </div>
+            <UploadModal open={isUploading} progress={uploadProgress} />
             <Footer currentPage={'subir'} />
         </>
     );

@@ -37,6 +37,21 @@ function Register() {
         localStorage.removeItem('fullName')
     }
 
+    const MAX_CHAR_LIMIT = 15; 
+
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value.length <= MAX_CHAR_LIMIT) {
+            setName(e.target.value);
+        }
+    };
+
+    const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value.length <= MAX_CHAR_LIMIT) {
+            setLastName(e.target.value);
+        }
+    };
+
     return (
         <div className='registration'>
             { showBanner && savedFullName ? (
@@ -53,7 +68,7 @@ function Register() {
                         type='text'
                         value={name}
                         className="registration-input"
-                        onChange={(e)=> setName(e.target.value)}
+                        onChange={handleNameChange}
                         placeholder='Dinos tu nombre'
                         required
                     />
@@ -61,10 +76,12 @@ function Register() {
                         type="text"
                         value={lastName}
                         className="registration-input"
-                        onChange={(e)=> setLastName(e.target.value)}
+                        onChange={handleLastNameChange}
                         placeholder="Dinos tu apellido"
                     />
-                    <button onClick={handleSubmit}>Submit</button>
+                    <button className="button" onClick={handleSubmit}>
+                        Entrar
+                    </button>
                 </div>
             )} 
         </div>
