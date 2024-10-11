@@ -38,16 +38,25 @@ function Register() {
     }
 
     const MAX_CHAR_LIMIT = 15; 
+    const PROHIBITED_CHARS = ['*', '/', '{', '}', '[', ']', '_', '-', '&', '\\']
 
+    const textIsClear = (text: string) => { 
+        if (text.length > 0) { 
+            console.log(text)
+            return !PROHIBITED_CHARS.includes(text.at(text.length - 1)!);
+        } else { 
+            return true;
+        }
+    };
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value.length <= MAX_CHAR_LIMIT) {
+        if (e.target.value.length <= MAX_CHAR_LIMIT && textIsClear(e.target.value)) {
             setName(e.target.value);
         }
     };
 
     const handleLastNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value.length <= MAX_CHAR_LIMIT) {
+        if (e.target.value.length <= MAX_CHAR_LIMIT && textIsClear(e.target.value)) {
             setLastName(e.target.value);
         }
     };
