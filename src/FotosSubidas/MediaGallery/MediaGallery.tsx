@@ -6,7 +6,6 @@ interface MediaItem {
   MediaType: 'image' | 'video';
   MediaURL: string;
   Uploader: string;
-  Timestamp: string;
 }
 
 function MediaGallery() {
@@ -51,7 +50,6 @@ function MediaGallery() {
                   <video controls={true} src={item.MediaURL} className='video-item'>
                   </video>
               ) : null}
-              <p>{item.Timestamp}</p>
             </div>
             
           ))}
